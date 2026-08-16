@@ -69,4 +69,9 @@ for rel,name in pages:
     header=f'---\nsource: {URL}{rel}\nversion: {VER}\nsynced: {datetime.date.today().isoformat()}\n---\n> 🦞 內容鏡像 · 與線上一致 · 改這裡後跟 Claude 說「照 {name}.md 更新網站」\n\n'
     for d in (OBS,snap):
         open(os.path.join(d,f'{name}.md'),'w',encoding='utf-8').write(header+md+'\n')
-print(f'mirrored {len(pages)} pages -> {OBS} (+snapshot {VER}-{DATE})')
+# 同步 html 原檔副本
+RAW=os.path.join(OBS,'_原檔html')
+for rel,name in pages:
+    dst=os.path.join(RAW,rel); os.makedirs(os.path.dirname(dst),exist_ok=True)
+    shutil.copy2(os.path.join(SITE,rel),dst)
+print(f'mirrored {len(pages)} pages -> {OBS} (+snapshot {VER}-{DATE}, +_原檔html)')
