@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>品味遊點地圖指引 · 馬來西亞小旅行 2026.8.26–31</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+body{margin:0;background:#F5F4EE;color:#262E28;font-family:"PingFang TC","Noto Sans TC",-apple-system,sans-serif;font-size:15.5px;line-height:1.85;}
+.wrap{max-width:860px;margin:0 auto;padding:32px 20px 60px;}
+h1,h2{font-family:"Songti TC","Songti SC",Georgia,serif;line-height:1.35;}
+h1{font-size:28px;margin:0 0 6px;}
+h2{font-size:20px;margin:40px 0 10px;}
+.tagchip{display:inline-block;font-size:12px;color:#5C665E;border:1px solid #D9D8CD;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:middle;font-family:"PingFang TC",sans-serif;font-weight:400;}
+.introbox{background:#FCFBF7;border:1px solid #D9D8CD;border-radius:10px;padding:14px 18px;font-size:13.5px;color:#5C665E;}
+.map{height:440px;border-radius:10px;border:1px solid #D9D8CD;margin:12px 0 8px;}
+.legend{font-size:13px;color:#5C665E;margin:0 0 8px;}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin:0 4px 0 10px;vertical-align:middle;}
+.callout{background:#FAF3E6;border:1px solid #E3CDA4;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:10px 0;}
+.lbl{background:rgba(252,251,247,.9);border:none;border-radius:4px;padding:1px 5px;font-size:11px;color:#26312B;box-shadow:0 0 0 1px rgba(0,0,0,.08);font-family:"PingFang TC",sans-serif;}
+footer{margin-top:44px;padding-top:14px;border-top:1px solid #D9D8CD;font-size:12.5px;color:#5C665E;}
+p{margin:0 0 12px;}
+a{color:#1E6B57;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>品味遊點地圖指引 · 馬來西亞小旅行 2026.8.26–31</h1>
+<p style="color:#5C665E">四張真座標地圖，把「特色小店、有格調的小產品、文化氣息咖啡店」這條線從文件裡蒸餾出來。青綠是藝與書，銅色是錨點與選物，藍灰是咖啡。營業時間細節在主網站與 Obsidian 文件，這裡只管地理與動線。</p>
+<div class="introbox">可縮放、可平移；右上角圖層鈕可切「淡色／街道／衛星」。點任一圖釘看說明，彈窗底下的連結用<b>店名</b>開 Google Maps——圖釘偏一點也不影響導航。滾輪縮放要先點一下地圖。</div>
+
+<h2>基地藝術圈<span class="tagchip">傍晚儀式 · 配每天收尾</span></h2>
+<p>住處十分鐘腳程內藏著這趟旅行的黃昏儀式：五點後熱氣散去，先到 Ilham Gallery——Foster 事務所大樓裡的免費美術館，策展嚴肅，附設的藝術書店被公認是全吉隆坡最好的一間（週一休，所以要排 8/26 到 30 之間）。再走幾分鐘是 Ombak KLCC：Galeri Petronas 停業五年後，八月剛好在這裡以預覽展「The First Glimpse」重開，是這趟旅行的此刻限定彩蛋。收尾走進 KLCC 公園看雙塔點燈，晚上八點起湖面有水舞。</p>
+<div id="m1" class="map"></div>
+<p class="legend"><span class="dot" style="background:#A65B2B"></span>住處錨點<span class="dot" style="background:#1E6B57"></span>藝廊與書店　虛線圈＝步行 400 / 800 公尺</p>
+
+<h2>茨廠街文青菱形<span class="tagchip">配 8/28 · 實測 1.1 公里</span></h2>
+<p>紫線是那條步行菱形，三段實測 375、323、383 公尺：從鬼仔巷的壁畫巷弄出發，五分鐘到 REXKL 的老戲院書店，再走七八分鐘到 1888 年的中央藝術坊，最後沿河經 Masjid Jamek——兩河交匯處、吉隆坡地名的原點——收在獨立廣場的殖民建築群（旁邊的國家紡織博物館免費，冷氣是正午的救援）。Riwayat 書店和 LOKL 咖啡就在菱形的邊上；GMBB 在東南角外十分鐘。還有一件抬頭就能做的事：Merdeka 118 離鬼仔巷只有 320 公尺，世界第二高樓從騎樓縫隙裡冒出來的那一眼，比上觀景台便宜也更動人（反正觀景台還沒開）。</p>
+<div id="m2" class="map"></div>
+<p class="legend"><span class="dot" style="background:#1E6B57"></span>文青點<span class="dot" style="background:#4A6478"></span>咖啡　紫線＝步行菱形</p>
+
+<h2>圈外三聚落<span class="tagchip">順道排法，不專程</span></h2>
+<p>有格調的小產品集中在三個聚落，各自搭配一天順道走。The Row 那條街：Batik Boutique 把蠟染從紀念品攤救回設計品，跟娘惹餐廳 Limapulo 同一條街，吃完午餐走幾步就到。Zhongshan Building：1950 年代同鄉會館改造的藝文聚落，Tintabudi 書店專收 Malaysiana，樓梯間塞著迷你咖啡吧——這是吉隆坡藝文圈自己人去的地方，週一全樓休，從茨廠街圈搭車五分鐘就到，天然接在 8/28 下午。Bangsar：Nala Designs 的手繪馬來西亞紋樣是「有格調的小產品」目前最強的答案，Kedai Bikin 的 kopitiam 椅當代版在幾條街外（週六預約制，要平日去）——配 8/30 留白日剛好。</p>
+<div id="m3" class="map"></div>
+<p class="legend"><span class="dot" style="background:#A65B2B"></span>選物<span class="dot" style="background:#1E6B57"></span>書與藝</p>
+
+<h2>怡保老城的慢<span class="tagchip">600 公尺的圓</span></h2>
+<p>一日行程的品味層全落在直徑約六百公尺的圓裡，彼此都是兩三分鐘：1917 年的白色火車站本身就是第一個景點，過馬路是 Birch 鐘樓，再往裡走就進了老街。閒真別墅在圓心——1893 年的客家錫礦公館，只收預約導覽；可惜週四只開 11:00 一場、火車 11:29 才到，這趟改為路過看外觀，正午最熱的一小時交給 STG 洋樓茶館或 Aud's Cafe。出來以後是二奶巷、Kong Heng 街區、開在百年銀行金庫裡的 BookXcess，走累了 Aud's Cafe 有手沖（週四開），或者到大草場邊 1937 年洋樓的 STG 坐長一點。何人可涼茶博物館免費，離二奶巷三分鐘，出口的涼茶包是最輕的伴手。</p>
+<div class="callout">週四注意：Kong Heng 手作市集平日攤位少（建築本身仍值得走）；BookXcess 地下的 Yasmin Ahmad 紀念展疑似只在週末開放，行前再核一次。</div>
+<div id="m4" class="map"></div>
+<p class="legend"><span class="dot" style="background:#A65B2B"></span>錨點<span class="dot" style="background:#1E6B57"></span>品味點　虛線圈＝老城核心約 320 公尺　綠線＝建議步行動線</p>
+
+<footer>
+座標來源：OpenStreetMap／Nominatim 實際圖資（查詢日 2026-08-14）；Ombak KLCC 取維基座標。標「估計」者為街廓級定位（Batik Boutique、Nala Designs、BookXcess Kong Heng、Aud's、何人可），誤差約 30–80 公尺——彈窗一律用店名開 Google Maps，導航不受影響。底圖 © OpenStreetMap 貢獻者／CARTO；衛星影像 © Esri。整頁可印成 PDF 帶上手機；圖磚需連網顯示。
+</footer>
+</div>
+<script>
+function newMap(id,c,z){
+  var light=L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO'});
+  var streets=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap'});
+  var sat=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'© Esri'});
+  var m=L.map(id,{layers:[light],scrollWheelZoom:false}).setView(c,z);
+  L.control.layers({'淡色':light,'街道':streets,'衛星':sat}).addTo(m);
+  L.control.scale({imperial:false}).addTo(m);
+  m.on('click',function(){m.scrollWheelZoom.enable();});
+  return m;
+}
+function pts(m,arr){arr.forEach(function(p){
+  var mk=L.circleMarker([p[0],p[1]],{radius:p[5]?9:7,color:p[4],fillColor:p[4],fillOpacity:.9,weight:p[5]?3:1.5}).addTo(m);
+  mk.bindPopup('<b>'+p[2]+'</b><br>'+p[3]+'<br><a target="_blank" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p[6])+'">在 Google Maps 開導航</a>');
+  mk.bindTooltip(p[2],{permanent:true,direction:p[7]||'right',offset:[9,0],className:'lbl'});
+});}
+var CU='#A65B2B',TE='#1E6B57',SL='#4A6478';
+var m1=newMap('m1',[3.1580,101.7150],15);
+L.circle([3.1610013,101.7125631],{radius:400,color:'#A65B2B',weight:1.5,dashArray:'5 5',fill:false}).addTo(m1);
+L.circle([3.1610013,101.7125631],{radius:800,color:'#A65B2B',weight:1.5,dashArray:'5 5',fill:false}).addTo(m1);
+pts(m1,[
+[3.1610013,101.7125631,'住處 ★ Ascott Star','基地・五晚',CU,1,'Ascott Star KLCC Kuala Lumpur','left'],
+[3.1588687,101.7188400,'Ilham Gallery','免費・全KL最好的藝術書店・週一休',TE,1,'Ilham Gallery Kuala Lumpur'],
+[3.15694,101.71778,'Ombak KLCC','Galeri Petronas 預覽展・此刻限定',TE,0,'Ombak KLCC','left'],
+[3.1555803,101.7147801,'KLCC 公園','傍晚儀式・晚八點起水舞',TE,0,'KLCC Park'],
+[3.1573751,101.7123797,'紀伊國屋','Suria KLCC・保險選項',SL,0,'Kinokuniya Suria KLCC','left']
+]);
+var m2=newMap('m2',[3.1450,101.6968],16);
+L.polyline([[3.1416091,101.6977314],[3.1448531,101.6982505],[3.1445997,101.6955316],[3.1487691,101.6936377]],{color:'#7F58A8',weight:3,opacity:.8}).addTo(m2);
+pts(m2,[
+[3.1416091,101.6977314,'鬼仔巷','1960s 壁畫巷・菱形起點',TE,1,'Kwai Chai Hong Kuala Lumpur'],
+[3.1448531,101.6982505,'REXKL','老戲院書店・BookXcess',TE,0,'REXKL Kuala Lumpur'],
+[3.1445997,101.6955316,'中央藝術坊','1888・工藝樓層整修中順路看',TE,0,'Central Market Kuala Lumpur','left'],
+[3.1487691,101.6936377,'獨立廣場','殖民建築群・晨昏光斜時',TE,1,'Dataran Merdeka Kuala Lumpur','left'],
+[3.1489292,101.6956759,'Masjid Jamek','兩河交匯・地名的原點',TE,0,'Masjid Jamek Kuala Lumpur'],
+[3.1465453,101.6939406,'紡織博物館','免費・正午的冷氣救援',TE,0,'National Textile Museum Kuala Lumpur','left'],
+[3.1486723,101.6980011,'Riwayat 書店','馬來西亞史選書＋黑膠',TE,0,'Riwayat bookstore Kuala Lumpur'],
+[3.1487879,101.6979943,'LOKL','散步起點的早午餐',SL,0,'LOKL Coffee Kuala Lumpur','right'],
+[3.1447455,101.7045274,'GMBB','創作者商場・雨天下午',TE,0,'GMBB Kuala Lumpur'],
+[3.1395,101.7003,'Merdeka 118','離鬼仔巷320m・塔下抬頭看',CU,0,'Merdeka 118 Kuala Lumpur'],
+[3.1432531,101.7054476,'VCR','1927老屋精品咖啡・排早晨',SL,0,'VCR Galloway Kuala Lumpur']
+]);
+var m3=newMap('m3',[3.1450,101.6850],13);
+pts(m3,[
+[3.1610013,101.7125631,'住處 ★','基地',CU,1,'Ascott Star KLCC Kuala Lumpur'],
+[3.1586,101.6993,'Batik Boutique（估計）','蠟染設計品・與 Limapulo 同街・車8–10分',CU,1,'Batik Boutique The Row Kuala Lumpur','left'],
+[3.1378922,101.6971390,'Zhongshan Building','Tintabudi 書店＋藝廊・週一休・茨廠街車5分',TE,1,'The Zhongshan Building Kampung Attap','left'],
+[3.1301,101.6714,'Nala Designs（估計）','手繪馬來西亞紋樣・Bangsar Village II・車15–20分',CU,0,'Nala Designs Bangsar Village'],
+[3.1310282,101.6784396,'Kedai Bikin','馬來西亞製家具家品・週六預約制排平日',CU,0,'Kedai Bikin Bangsar'],
+[3.1445997,101.6955316,'中央藝術坊','順路點',TE,0,'Central Market Kuala Lumpur','left']
+]);
+var m4=newMap('m4',[4.5958,101.0775],16);
+L.circle([4.5955,101.0778],{radius:320,color:'#1E6B57',weight:1.5,dashArray:'5 5',fill:false}).addTo(m4);
+L.polyline([[4.5970418,101.0735662],[4.5968284,101.0761924],[4.5932295,101.0769238],[4.5962611,101.0790011],[4.5958725,101.0795675],[4.5965183,101.0775298]],{color:'#1E6B57',weight:3,opacity:.65,dashArray:'1 6'}).addTo(m4);
+pts(m4,[
+[4.5970418,101.0735662,'怡保火車站 ★','1917 白色殖民建築・第一個景點',CU,1,'Ipoh Railway Station','left'],
+[4.5968284,101.0761924,'Birch 鐘樓','1909・路過十分鐘',TE,0,'Birch Memorial Clock Tower Ipoh'],
+[4.5962611,101.0790011,'閒真別墅','1893 錫礦公館・週四僅11:00場趕不上・路過看外觀',TE,0,'Han Chin Pet Soo Ipoh'],
+[4.5958725,101.0795675,'二奶巷','礦業時代窄巷・上午人少',TE,0,'Concubine Lane Ipoh','right'],
+[4.5965183,101.0775298,'Kong Heng 街區','榕樹天井市集・週四攤少建築仍值得',TE,0,'Kong Heng Square Ipoh','left'],
+[4.5963,101.0774,'BookXcess（估計）','百年銀行金庫書店・留40分鐘',TE,0,'BookXcess Kong Heng Ipoh','left'],
+[4.5960,101.0772,'Aud’s Cafe（估計）','夫妻老屋手沖・週四開',SL,0,'Auds Cafe Ipoh','left'],
+[4.5978176,101.0782373,'STG 洋樓','1937 殖民洋樓茶館・坐長一點',SL,0,'STG Ipoh Oldtown'],
+[4.5956729,101.0787680,'何人可博物館（估計）','免費涼茶博物館・輕伴手',TE,0,'Ho Yan Hor Museum Ipoh']
+]);
+</script>
+</body>
+</html>

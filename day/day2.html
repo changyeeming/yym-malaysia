@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>8/27 四 · 怡保一日 · 日卡</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+:root{--bg:#F5F4EE;--card:#FCFBF7;--ink:#262E28;--ink2:#5C665E;--line:#D9D8CD;--g:#1E6B57;--gs:#E3EEE8;--c:#A65B2B;--cs:#F3E7DA;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang TC","Noto Sans TC",-apple-system,sans-serif;font-size:15px;line-height:1.7;}
+.wrap{max-width:640px;margin:0 auto;padding:16px 14px 60px;}
+.top{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;}
+.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--ink2);text-transform:uppercase;}
+h1{font-family:"Songti TC","Songti SC",Georgia,serif;font-size:24px;margin:4px 0 6px;line-height:1.3;}
+.one{font-size:15px;color:var(--ink);margin:0 0 10px;}
+.anchors{display:flex;flex-wrap:wrap;gap:8px;}
+.anchor{background:var(--cs);color:var(--c);border-radius:999px;padding:3px 12px;font-size:13px;font-weight:600;white-space:nowrap;}
+.anchor.g{background:var(--gs);color:var(--g);}
+#map{height:300px;border-radius:12px;border:1px solid var(--line);margin:14px 0 6px;}
+.maplegend{font-size:12px;color:var(--ink2);margin-bottom:14px;}
+h2{font-family:"Songti TC","Songti SC",Georgia,serif;font-size:18px;margin:22px 0 10px;}
+.tl{border-left:2px solid var(--line);margin-left:8px;padding-left:16px;}
+.step{position:relative;margin-bottom:16px;}
+.step::before{content:"";position:absolute;left:-22px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--g);border:2px solid var(--card);}
+.step.key::before{background:var(--c);width:12px;height:12px;left:-23px;top:7px;}
+.t{font-variant-numeric:tabular-nums;font-weight:700;font-size:14px;color:var(--ink2);}
+.what{font-weight:600;font-size:15.5px;}
+.how{font-size:14px;color:var(--ink2);}
+.alt{font-size:13px;color:var(--ink2);background:var(--card);border:1px dashed var(--line);border-radius:8px;padding:6px 10px;margin-top:6px;}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:14px;}
+.box ul{margin:4px 0;padding-left:1.2em;}
+.nav{display:flex;justify-content:space-between;margin-top:26px;font-size:13px;}
+.nav a{color:var(--g);text-decoration:none;border-bottom:1px solid var(--line);}
+.lbl{background:rgba(252,251,247,.92);border:none;border-radius:4px;padding:1px 5px;font-size:11px;color:#26312B;box-shadow:0 0 0 1px rgba(0,0,0,.08);white-space:nowrap;}
+a{color:var(--g);}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top">
+  <div class="eyebrow">Day 2 · 2026.8.27 週四 · 日卡</div>
+  <h1>怡保一日：在西岸慢慢磨，只為晚餐過一次河</h1>
+  <p class="one">火車兩頭是硬的，中間全是軟的。上午茶室、正午躲熱、下午老街與書店、傍晚芽菜雞。天熱，每 60–90 分鐘進一次冷氣店。</p>
+  <div class="anchors">
+    <span class="anchor">🚆 去 08:55 KL Sentral（F 車廂 5A/5B）</span>
+    <span class="anchor">🚆 回 19:00 Ipoh（F 車廂 13D/13C）</span>
+    <span class="anchor g">☕ 新源隆 14:30 前</span>
+    <span class="anchor g">🍗 老黃芽菜雞 現金</span>
+  </div>
+</div>
+
+<div id="map"></div>
+<div class="maplegend">綠圈＝老城核心約 320 公尺；銅色＝火車站與正餐；虛線＝過河去新街場（Grab 5 分鐘）。點圖釘開 Google Maps 導航。</div>
+
+<h2>時間軸</h2>
+<div class="tl">
+  <div class="step key"><div class="t">07:20</div><div class="what">出門叫 Grab → KL Sentral</div><div class="how">跟司機說 "KL Sentral, Level 2 main entrance"。尖峰 25–40 分鐘、約 RM15–25。</div><div class="alt">備案：走 12 分鐘到 LRT KLCC 站（Suria 地下），Kelana Jaya 線往 KL Sentral 方向 5 站 12 分鐘，票 RM2.40；到站上手扶梯到 Level 2。</div></div>
+  <div class="step"><div class="t">08:00–08:15</div><div class="what">Level 2 大廳 → Gate B（大廳中央）</div><div class="how">手機開 KTMB App 顯示 QR、護照備查。想買咖啡上 Level 3 美食廣場。閘門開車前 5 分鐘關，關了不退票。</div></div>
+  <div class="step key"><div class="t">08:55 → 11:29</div><div class="what">Gold 9044，F 車廂 5A/5B，面向前進</div><div class="how">C 車廂有 Bistro（熱飲零食）。右手邊看中央山脈、近怡保時的石灰岩峰。</div></div>
+  <div class="step"><div class="t">11:29</div><div class="what">抵怡保火車站——它本身就是第一個景點</div><div class="how">1917 白色摩爾式「怡保泰姬陵」，站前拍 10 分鐘。出站對面是市政廳與 Birch 鐘樓。</div></div>
+  <div class="step"><div class="t">11:45</div><div class="what">步行 10 分鐘進老城 → 新源隆白咖啡＋蛋撻</div><div class="how">Jalan Bandar Timah 茶室街，1937 年白咖啡創始店之一，14:30 關門。或斜對面 1958 年的南香（開到 17:00）。</div></div>
+  <div class="step key"><div class="t">12:15</div><div class="what">Grab 5 分鐘過河 → 老黃芽菜雞（正餐）</div><div class="how">49 Jalan Yau Tet Shin，1957 年，芽菜雞＋沙河粉。只收現金。12:30 後在地人湧入，早一點進場免排。對面安記是備案。</div></div>
+  <div class="step"><div class="t">13:00–13:30</div><div class="what">Jalan Theatre 一條街：豆花＋伴手</div><div class="how">Funny Mountain 豆腐花（賣完為止，趁早）→ 宴瓊林鹽焗雞紅盒外帶 → 新永香現烤咖椰角（最適合帶上火車）。三站在 300 公尺內。</div></div>
+  <div class="step"><div class="t">13:45</div><div class="what">Grab 5 分鐘回老城 → STG 洋樓茶館躲正午</div><div class="how">18–20 Jalan Tun Sambanthan，1937 年殖民洋樓，12:00 起營業，坐長一點吹冷氣。</div><div class="alt">閒真別墅（1893 錫礦公館）週四只開 11:00 場、火車趕不上——路過看外觀就好，No.3 Jalan Bijeh Timah 就在旁邊。或改 Aud's Cafe（97 Jalan Sultan Yusof，9–17）。</div></div>
+  <div class="step"><div class="t">14:45–16:30</div><div class="what">老城慢走：二奶巷 → Kong Heng 街區 → BookXcess 金庫書店</div><div class="how">彼此兩三分鐘。BookXcess 開在百年銀行舊址，金庫保險箱當書架，值得 40 分鐘。Kong Heng 市集平日攤少但榕樹天井建築本身值得走。何人可涼茶博物館免費（9–16），出口涼茶包是最輕的伴手。</div></div>
+  <div class="step"><div class="t">16:30–17:45</div><div class="what">南香再一杯白咖啡，或 Aud's 手沖，等火車</div><div class="how">留白。累了就早點回站。</div></div>
+  <div class="step key"><div class="t">18:15</div><div class="what">Grab 回怡保火車站</div><div class="how">老城到站 3–5 分鐘。閘門開車前 5 分鐘關。</div></div>
+  <div class="step key"><div class="t">19:00 → 21:34</div><div class="what">Gold 9055，F 車廂 13D/13C</div><div class="how">抵 KL Sentral 從 Gate A 出閘（Level 2）；Grab 上車點在 Level 1 KLIA Ekspres 到站廳外，照 App 的 pin 走；定位「Ascott Star KLCC」。回住處約 22:00，今晚不再排。</div></div>
+</div>
+
+<h2>今天要帶・要注意</h2>
+<div class="box"><ul>
+  <li>護照（驗票對護照）、KTMB App 或票 PDF、<b>現金</b>（芽菜雞只收現金；備 RM150）。</li>
+  <li>陽傘、水；老城騎樓有遮蔭，老城→新街場那段 15 分鐘無遮蔭一律 Grab。</li>
+  <li>票不能改期只能退；閘門開車前 5 分鐘關。</li>
+  <li>鹽焗雞帶上車有香氣，密封袋多套一層。</li>
+</ul></div>
+
+<div class="nav"><a href="day1.html">← Day 1 抵達</a><a href="day3.html">Day 3 茨廠街與 Dewakan →</a></div>
+</div>
+<script>
+var light=L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO'});
+var map=L.map('map',{layers:[light],scrollWheelZoom:false}).setView([4.5952,101.0795],16);
+map.on('click',function(){map.scrollWheelZoom.enable();});
+L.control.scale({imperial:false}).addTo(map);
+L.circle([4.5955,101.0778],{radius:320,color:'#1E6B57',weight:1.5,dashArray:'5 5',fill:false}).addTo(map);
+L.polyline([[4.5962,101.0785],[4.5945,101.0820],[4.5940107,101.0842254]],{color:'#A65B2B',weight:2,dashArray:'5 5',opacity:.7}).addTo(map).bindTooltip('過河 Grab 5 分',{sticky:true});
+function pt(lat,lng,name,note,q,big,c,dir){c=c||'#1E6B57';var m=L.circleMarker([lat,lng],{radius:big?9:6.5,color:c,fillColor:c,fillOpacity:.92,weight:big?3:1.5}).addTo(map);m.bindPopup('<b>'+name+'</b><br>'+note+'<br><a target="_blank" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q||name)+'">Google Maps 導航</a>');m.bindTooltip(name,{permanent:true,direction:dir||'right',offset:[8,0],className:'lbl'});}
+pt(4.5970418,101.0735662,'火車站','11:29 到／19:00 回','Ipoh Railway Station',true,'#A65B2B','left');
+pt(4.5968284,101.0761924,'Birch 鐘樓','路過 10 分鐘','Birch Memorial Clock Tower Ipoh',false,'#1E6B57','right');
+pt(4.5932295,101.0769238,'新源隆','白咖啡蛋撻・14:30 收','Sin Yoon Loong Ipoh',false,'#1E6B57','left');
+pt(4.5978176,101.0782373,'STG 洋樓','正午避熱・12:00 開','STG Ipoh Oldtown',false,'#1E6B57','right');
+pt(4.5962611,101.0790011,'閒真別墅','路過看外觀','Han Chin Pet Soo Ipoh',false,'#888780','right');
+pt(4.5958725,101.0795675,'二奶巷','老街','Concubine Lane Ipoh',false,'#1E6B57','right');
+pt(4.5965183,101.0775298,'Kong Heng・BookXcess','金庫書店・市集','Kong Heng Square Ipoh',false,'#1E6B57','left');
+pt(4.5940107,101.0842254,'老黃芽菜雞','正餐・現金','Lou Wong Bean Sprout Chicken Ipoh',true,'#A65B2B','right');
+pt(4.5949228,101.0843799,'Funny Mountain 豆花','賣完為止','Funny Mountain Soya Bean Ipoh',false,'#1E6B57','right');
+pt(4.5940421,101.0859572,'宴瓊林鹽焗雞','外帶紅盒','Aun Kheng Lim Salted Chicken Ipoh',false,'#1E6B57','right');
+pt(4.5948857,101.0847908,'新永香咖椰角','帶上火車','Sin Eng Heong kaya puff Ipoh',false,'#1E6B57','left');
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>8/29 六 · 鎰記 → Limapulo → The Row → 傍晚老城 · 日卡</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+:root{--bg:#F5F4EE;--card:#FCFBF7;--ink:#262E28;--ink2:#5C665E;--line:#D9D8CD;--g:#1E6B57;--gs:#E3EEE8;--c:#A65B2B;--cs:#F3E7DA;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang TC","Noto Sans TC",-apple-system,sans-serif;font-size:15px;line-height:1.7;}
+.wrap{max-width:640px;margin:0 auto;padding:16px 14px 60px;}
+.top{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;}
+.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--ink2);text-transform:uppercase;}
+h1{font-family:"Songti TC","Songti SC",Georgia,serif;font-size:24px;margin:4px 0 6px;line-height:1.3;}
+.one{font-size:15px;color:var(--ink);margin:0 0 10px;}
+.anchors{display:flex;flex-wrap:wrap;gap:8px;}
+.anchor{background:var(--cs);color:var(--c);border-radius:999px;padding:3px 12px;font-size:13px;font-weight:600;white-space:nowrap;}
+.anchor.g{background:var(--gs);color:var(--g);}
+#map{height:300px;border-radius:12px;border:1px solid var(--line);margin:14px 0 6px;}
+.maplegend{font-size:12px;color:var(--ink2);margin-bottom:14px;}
+h2{font-family:"Songti TC","Songti SC",Georgia,serif;font-size:18px;margin:22px 0 10px;}
+.tl{border-left:2px solid var(--line);margin-left:8px;padding-left:16px;}
+.step{position:relative;margin-bottom:16px;}
+.step::before{content:"";position:absolute;left:-22px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--g);border:2px solid var(--card);}
+.step.key::before{background:var(--c);width:12px;height:12px;left:-23px;top:7px;}
+.t{font-variant-numeric:tabular-nums;font-weight:700;font-size:14px;color:var(--ink2);}
+.what{font-weight:600;font-size:15.5px;}
+.how{font-size:14px;color:var(--ink2);}
+.alt{font-size:13px;color:var(--ink2);background:var(--card);border:1px dashed var(--line);border-radius:8px;padding:6px 10px;margin-top:6px;}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:14px;}
+.box ul{margin:4px 0;padding-left:1.2em;}
+.nav{display:flex;justify-content:space-between;margin-top:26px;font-size:13px;}
+.nav a{color:var(--g);text-decoration:none;border-bottom:1px solid var(--line);}
+.lbl{background:rgba(252,251,247,.92);border:none;border-radius:4px;padding:1px 5px;font-size:11px;color:#26312B;box-shadow:0 0 0 1px rgba(0,0,0,.08);white-space:nowrap;}
+a{color:var(--g);}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top">
+  <div class="eyebrow">Day 4 · 2026.8.29 週六 · 日卡</div>
+  <h1>娘惹主菜日：鎰記早餐、Limapulo 午餐、Batik 選物、傍晚 Capital 沙嗲</h1>
+  <p class="one">今天沒有硬錨、只有一個「必須卡在中午」的軟錨——Limapulo 娘惹午餐只收 walk-in、週日休，所以 11:30 開門就到。上午老茶室、中午娘惹、下午同一條街的蠟染選物、傍晚看沙嗲上火。太太的一天。</p>
+  <div class="anchors"><span class="anchor">🍛 Limapulo 11:30 walk-in（週日休→今天）</span><span class="anchor g">☕ 鎰記 9 點（避 11:30 後人龍）</span><span class="anchor g">🧵 Batik Boutique 同街</span><span class="anchor g">🍢 Capital Café 沙嗲傍晚才烤</span></div>
+</div>
+<div id="map"></div>
+<div class="maplegend">鎰記、Limapulo、Batik Boutique、Capital Café 都在住處西邊 2–3 公里的 Chow Kit／The Row 一帶，彼此車程 5 分鐘內；傍晚往南到獨立廣場。</div>
+<h2>時間軸</h2>
+<div class="tl">
+<div class="step key"><div class="t">08:45</div><div class="what">Grab → 鎰記 Yut Kee（1 Jalan Kamunting，約 8 分鐘）</div><div class="how">1928 年海南茶餐室，比國家還老：roti babi（炸豬肉麵包）、海南豬扒、kaya 瑞士卷。9 點到最從容，11:30 後要等 20–40 分鐘。週一休（今天週六開）。</div></div>
+<div class="step"><div class="t">10:00–11:15</div><div class="what">Chow Kit 一帶慢走或回住處歇</div><div class="how">鎰記到 Limapulo 只有 1.5 公里，中間是 Jalan TAR 老街——布料店、Capital Café 也在這條街上；太熱就 Grab 回住處歇一小時再出來。</div></div>
+<div class="step key"><div class="t">11:25</div><div class="what">The Row（Jalan Doraisamy）→ Limapulo 開門進場</div><div class="how">1930 年代雙層街屋、安哥 John 的家傳娘惹菜，米其林指南 2023–25 連年入選。午餐只收 walk-in、11:30–15:00；招牌 laksa lemak、pai tee 小金杯、sago gula Melaka 收尾。</div><div class="alt">週日休——所以一定是今天。若客滿等 20 分鐘，隔壁街屋逛逛。</div></div>
+<div class="step"><div class="t">13:00–14:00</div><div class="what">走幾步 → Batik Boutique 旗艦店（62-1 Jalan Doraisamy）</div><div class="how">B Corp 社會企業，把蠟染從紀念品攤救回設計品：絲巾、家品、服飾。太太的選物時段，不趕。</div></div>
+<div class="step"><div class="t">14:00–16:30</div><div class="what">回住處午休／泳池（57 樓，平日上午最空，週六下午也還行）</div><div class="how">今天沒有晚上硬錨，下午留白。或 Ilham Gallery（若 Day 1 沒去），步行 10 分鐘。</div><div class="alt">想再走一圈老城：Zhongshan Building（藝文樓，Tintabudi 書店，Grab 12 分鐘）週六開。</div></div>
+<div class="step key"><div class="t">17:15</div><div class="what">Grab → Capital Café（213 Jalan TAR，約 10 分鐘）</div><div class="how">1956 年，馬來、華人師傅同室，本身就是一堂 Merdeka 課；沙嗲只有傍晚才烤，營業到 19:30、週日休——所以是今天傍晚。吃沙嗲、炒粿條當早晚餐。</div></div>
+<div class="step"><div class="t">18:15–19:00</div><div class="what">步行 10 分鐘 → 獨立廣場看殖民建築群在斜光裡</div><div class="how">Sultan Abdul Samad 大樓在傍晚最好看；週六傍晚人不多。走過 Masjid Jamek 看 River of Life 燈光。</div></div>
+<div class="step"><div class="t">19:30</div><div class="what">晚餐輕鬆：金蓮記福建麵（茨廠街，1927 發源店）或 Chocha</div><div class="how">Capital 已吃了沙嗲，晚餐一份福建麵兩人分剛好；想坐得舒服就 Chocha（老旅社改造，晚餐為主，電話 +603 2022 1100 訂）。</div><div class="alt">或直接回住處，Suria 買點東西回房，早睡。</div></div>
+<div class="step"><div class="t">21:00</div><div class="what">Grab 回住處</div><div class="how">明天留白日，不用早起。</div></div>
+</div>
+<h2>今天要帶・要注意</h2>
+<div class="box"><ul><li>Limapulo 週日休、只收午餐 walk-in——11:25 到門口是今天唯一的紀律。</li><li>Capital Café 週日休、沙嗲傍晚才有——別排早上。</li><li>太太的選物日：Batik Boutique 可刷卡；想再加 Nala Designs 留給明天 Bangsar。</li></ul></div>
+<div class="nav"><a href="day3.html">← Day 3 茨廠街與 Dewakan</a><a href="day5.html">Day 5 留白與 Beta →</a></div>
+</div>
+<script>
+var light=L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO'});
+var map=L.map('map',{layers:[light],scrollWheelZoom:false}).setView([3.1575,101.6985],15);
+map.on('click',function(){map.scrollWheelZoom.enable();});
+L.control.scale({imperial:false}).addTo(map);
+function pt(lat,lng,name,note,q,big,c,dir){c=c||'#1E6B57';var m=L.circleMarker([lat,lng],{radius:big?9:6.5,color:c,fillColor:c,fillOpacity:.92,weight:big?3:1.5}).addTo(map);m.bindPopup('<b>'+name+'</b><br>'+note+'<br><a target="_blank" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q||name)+'">Google Maps 導航</a>');m.bindTooltip(name,{permanent:true,direction:dir||'right',offset:[8,0],className:'lbl'});}
+pt(3.1564828,101.7003022,'鎰記 Yut Kee','1928・09:00 早餐','Yut Kee Kuala Lumpur',true,'#1E6B57','right');
+pt(3.1582671,101.6994784,'Limapulo','娘惹主菜・11:30 開門就到','Limapulo Baba Can Cook',true,'#1E6B57','left');
+pt(3.1586,101.6993,'Batik Boutique','蠟染設計品・同街','Batik Boutique The Row',false,'#BA7517','right');
+pt(3.1561115,101.6962745,'Capital Café','1956・沙嗲傍晚・週日休','Capital Cafe Jalan TAR',true,'#1E6B57','left');
+pt(3.1487691,101.6936377,'獨立廣場','傍晚光斜時再走一次','Dataran Merdeka',false,'#7F58A8','left');
+pt(3.1487879,101.6979943,'LOKL','早午餐備案','LOKL Coffee',false,'#4A6478','right');
+pt(3.1443421,101.6975031,'金蓮記','福建麵・晚餐備案','Kim Lian Kee Petaling Street',false,'#1E6B57','right');
+pt(3.1408565,101.6980974,'Chocha','老旅社改造・要訂位','Chocha Foodstore',false,'#4A6478','left');
+</script>
+</body>
+</html>

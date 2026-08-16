@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>美食地圖指引 · 馬來西亞小旅行 2026.8.26–31</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+body{margin:0;background:#F5F4EE;color:#262E28;font-family:"PingFang TC","Noto Sans TC",-apple-system,sans-serif;font-size:15.5px;line-height:1.85;}
+.wrap{max-width:860px;margin:0 auto;padding:32px 20px 60px;}
+h1,h2{font-family:"Songti TC","Songti SC",Georgia,serif;line-height:1.35;}
+h1{font-size:28px;margin:0 0 6px;}
+h2{font-size:20px;margin:40px 0 10px;}
+.tagchip{display:inline-block;font-size:12px;color:#5C665E;border:1px solid #D9D8CD;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:middle;font-family:"PingFang TC",sans-serif;font-weight:400;}
+.introbox{background:#FCFBF7;border:1px solid #D9D8CD;border-radius:10px;padding:14px 18px;font-size:13.5px;color:#5C665E;}
+.map{height:440px;border-radius:10px;border:1px solid #D9D8CD;margin:12px 0 8px;}
+.legend{font-size:13px;color:#5C665E;margin:0 0 8px;}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin:0 4px 0 10px;vertical-align:middle;}
+.callout{background:#FAF3E6;border:1px solid #E3CDA4;border-radius:10px;padding:12px 16px;font-size:13.5px;margin:10px 0;}
+.lbl{background:rgba(252,251,247,.9);border:none;border-radius:4px;padding:1px 5px;font-size:11px;color:#26312B;box-shadow:0 0 0 1px rgba(0,0,0,.08);font-family:"PingFang TC",sans-serif;}
+footer{margin-top:44px;padding-top:14px;border-top:1px solid #D9D8CD;font-size:12.5px;color:#5C665E;}
+p{margin:0 0 12px;}
+a{color:#1E6B57;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>美食地圖指引 · 馬來西亞小旅行 2026.8.26–31</h1>
+<p style="color:#5C665E">四張真座標地圖，把「吃」這個主題從文件裡蒸餾出來。銅色是米其林星級，青綠是老字號與 local 正典，藍灰是咖啡與甜。訂位規則與完整名單在主網站的「吃」區與 Obsidian 文件，這裡只管地理。</p>
+<div class="introbox">可縮放、可平移；右上角圖層鈕可切「淡色／街道／衛星」。點任一圖釘看說明，彈窗底下的連結用<b>店名</b>開 Google Maps——就算圖釘偏一點，導航仍會帶到正確門口。滾輪縮放要先點一下地圖。</div>
+
+<h2>基地圈的吃<span class="tagchip">住處 800 公尺內外</span></h2>
+<p>這張圖先講一個教訓：Dewakan 跟住處雖然同屬 KLCC 這片街廓，但一個在西北角、一個在東南側，直線 973 公尺，等於斜穿整個園區，走路要 12 到 15 分鐘。八月底的傍晚常有雷陣雨，所以星級晚餐直接叫 Grab，五分鐘車程不必省。Beta 在西邊的 Jalan Perak，步行約一刻鐘，是週日晚上（8/30）全城少數還開的星級。</p>
+<p>早餐則往北走：樓下的 After One 八點開門，安靜體面；再往北約十五分鐘是 Kampung Baru——摩天樓包圍的馬來甘榜，Wanjo 的椰漿飯從 1963 年賣到現在，八點前涼爽時去，吃完順便散步高腳屋聚落。</p>
+<div id="m1" class="map"></div>
+<p class="legend"><span class="dot" style="background:#A65B2B"></span>米其林星級<span class="dot" style="background:#1E6B57"></span>local 與早餐<span class="dot" style="background:#4A6478"></span>輕食甜點　虛線圈＝步行 400 / 800 公尺（約 5 / 10 分鐘）</p>
+
+<h2>老城的吃<span class="tagchip">茨廠街圈 · 配 8/28</span></h2>
+<p>娘惹午餐的錨點是 Old China Café——開在戰前會館老屋裡，木百葉窗、老鏡子、大理石桌，太太喜歡的娘惹叻沙和 rendang 都在這裡。它跟必比登的新九如、南香雞飯、1927 年發明福建麵的金蓮記，全部擠在幾條街之內；何九茶室更是就在鬼仔巷口三十公尺，只是它已成排隊店，要去就 7:30 開門進場。下午想坐下來，Merchant's Lane 的天井和花磚在二樓等著（週三休）；傍晚則留給隔壁的 Chocha——老旅社改造，現在以晚餐為主，要訂位。</p>
+<div id="m2" class="map"></div>
+<p class="legend"><span class="dot" style="background:#A65B2B"></span>必比登／娘惹錨點<span class="dot" style="background:#1E6B57"></span>老字號<span class="dot" style="background:#4A6478"></span>咖啡與傍晚</p>
+
+<h2>圈外衛星<span class="tagchip">車程帳</span></h2>
+<p>這張圖回答「值不值得跑一趟」。原則是<b>近的排晚、遠的排早</b>：適苑（1948 年柴火粵菜）和新峰肉骨茶都在十分鐘車程內，晚餐無壓力；Limapulo 在 The Row 的老街屋裡，是娘惹的主菜中的主菜，午餐只收 walk-in、週日休——要嘛卡平日或週六的中午，吃完幾步路就是 Batik Boutique。TTDI 的三家星級（Terra、Akar、DC）單程要二十到四十分鐘，挑一家就好——推價位最親民的新科一星 Terra，訂六點頭一輪，避開深夜回程。</p>
+<div id="m3" class="map"></div>
+<p class="legend"><span class="dot" style="background:#A65B2B"></span>星級<span class="dot" style="background:#1E6B57"></span>必比登／娘惹／local　彈窗內附車程</p>
+
+<h2>怡保一日的吃<span class="tagchip">老城圈＋過一次河</span></h2>
+<p>怡保的茶室是「早晨經濟」，下午兩三點就收，所以順序不能倒：上午在老城圈喝新源隆的白咖啡配蛋撻（14:30 關門），中午過河吃老黃芽菜雞（只收現金，11:45 進場不用排），飯後在 STG 洋樓茶館或 Aud's 躲正午的熱（閒真別墅週四只開 11:00 場、火車趕不上，改路過看外觀），下午回到 Jalan Theatre 這條三百公尺的街上——Funny Mountain 豆腐花（賣完為止，趁早）、宴瓊林鹽焗雞（紅盒外帶）、新永香現烤咖椰角（最適合帶上火車的伴手），一趟走完。天津茶室週四公休，焦糖燉蛋這站已用豆花補上。</p>
+<div class="callout">舊街場到 Jalan Theatre 約一公里、無遮蔭，建議 Grab（五分鐘、車資數令吉）；整天只過一次近打河。</div>
+<div id="m4" class="map"></div>
+<p class="legend"><span class="dot" style="background:#A65B2B"></span>正餐<span class="dot" style="background:#1E6B57"></span>茶室與伴手　虛線圈＝老城核心約 320 公尺</p>
+
+<footer>
+座標來源：OpenStreetMap／Nominatim 實際圖資（查詢日 2026-08-14）。標「估計」者為街廓級定位（Beta、南香雞飯、南香茶室、宴瓊林、新峰、Merchant's Lane、Batik Boutique），誤差約 30–80 公尺——彈窗一律用店名開 Google Maps，導航不受影響。Limapulo 取 The Row 門牌 50 Jalan Doraisamy（OSM 上另有 Tengkat Tong Shin 舊條目，以較新報導為準）。底圖 © OpenStreetMap 貢獻者／CARTO；衛星影像 © Esri。訂位規則見主網站「台北預訂」區。整頁可印成 PDF 帶上手機；圖磚需連網顯示。
+</footer>
+</div>
+<script>
+function newMap(id,c,z){
+  var light=L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO'});
+  var streets=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap'});
+  var sat=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'© Esri'});
+  var m=L.map(id,{layers:[light],scrollWheelZoom:false}).setView(c,z);
+  L.control.layers({'淡色':light,'街道':streets,'衛星':sat}).addTo(m);
+  L.control.scale({imperial:false}).addTo(m);
+  m.on('click',function(){m.scrollWheelZoom.enable();});
+  return m;
+}
+function pts(m,arr){arr.forEach(function(p){
+  var mk=L.circleMarker([p[0],p[1]],{radius:p[5]?9:7,color:p[4],fillColor:p[4],fillOpacity:.9,weight:p[5]?3:1.5}).addTo(m);
+  mk.bindPopup('<b>'+p[2]+'</b><br>'+p[3]+'<br><a target="_blank" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p[6])+'">在 Google Maps 開導航</a>');
+  mk.bindTooltip(p[2],{permanent:true,direction:p[7]||'right',offset:[9,0],className:'lbl'});
+});}
+var CU='#A65B2B',TE='#1E6B57',SL='#4A6478';
+var m1=newMap('m1',[3.1575,101.7135],15);
+L.circle([3.1610013,101.7125631],{radius:400,color:'#A65B2B',weight:1.5,dashArray:'5 5',fill:false}).addTo(m1);
+L.circle([3.1610013,101.7125631],{radius:800,color:'#A65B2B',weight:1.5,dashArray:'5 5',fill:false}).addTo(m1);
+pts(m1,[
+[3.1610013,101.7125631,'住處 ★ Ascott Star','基地・五晚',CU,1,'Ascott Star KLCC Kuala Lumpur','left'],
+[3.1547191,101.7185049,'Dewakan ★★','✅已訂 8/28（五）18:00 二人・RM870・直線973m，叫車去',CU,1,'Dewakan Naza Tower Kuala Lumpur'],
+[3.1567,101.7097,'Beta ★（估計）','一星・週一休・週日晚的解答・步行約15分',CU,0,'Beta KL restaurant Jalan Perak','left'],
+[3.1586925,101.7039258,'Molina ★','一星・51樓・12小時前都可訂・日一休',CU,0,'Molina restaurant The Face Suites Kuala Lumpur','left'],
+[3.1593086,101.7209973,'De.Wan 1958','必比登・Chef Wan 馬來家宴・不用搶位',TE,0,'De.Wan 1958 The LINC Kuala Lumpur'],
+[3.1618161,101.7136210,'After One','樓下早午餐・08:00 開',SL,0,'After One Persiaran Lidcol Kuala Lumpur'],
+[3.1624468,101.7044457,'Nasi Lemak Wanjo','1963 椰漿飯・排早晨・步行約15分',TE,0,'Nasi Lemak Wanjo Kampung Baru','left'],
+[3.1573751,101.7123797,'Nyonya Colors','Suria KLCC 內・娘惹糕日常補給',SL,0,'Nyonya Colors Suria KLCC','left']
+]);
+var m2=newMap('m2',[3.1428,101.6985],16);
+pts(m2,[
+[3.1413844,101.6973506,'Old China Café','娘惹錨點・戰前會館老屋・每日 11–22',CU,1,'Old China Cafe Kuala Lumpur','left'],
+[3.1413488,101.6976799,'何九茶店','1956・排隊店，要去就 7:30 進場',TE,0,'Ho Kow Hainam Kopitiam Kuala Lumpur',,'right'],
+[3.1440,101.6987,'南香雞飯（估計）','1938 海南雞飯・必比登・午市避尖峰',CU,0,'Nam Heong Chicken Rice Jalan Sultan Kuala Lumpur'],
+[3.1443421,101.6975031,'金蓮記','1927 福建麵發源店・排晚餐',TE,0,'Kim Lian Kee Petaling Street','left'],
+[3.1408565,101.6980974,'Chocha','老旅社改造・晚餐為主・要訂位',SL,0,'Chocha Foodstore Kuala Lumpur'],
+[3.1410,101.6979,'Merchant’s Lane（估計）','二樓天井花磚・下午茶・週三休',SL,0,'Merchants Lane Kuala Lumpur','left'],
+[3.1429155,101.6988816,'Leaf & Co.','百年轉角老屋・下午躲太陽',SL,0,'Leaf and Co Cafe Jalan Sultan Kuala Lumpur']
+]);
+var m3=newMap('m3',[3.1480,101.6760],12);
+pts(m3,[
+[3.1610013,101.7125631,'住處 ★','基地',CU,1,'Ascott Star KLCC Kuala Lumpur'],
+[3.1582671,101.6994784,'Limapulo','娘惹主菜・米其林入選・午 walk-in・週日休・車8–10分',CU,1,'Limapulo Baba Can Cook Kuala Lumpur','left'],
+[3.1355939,101.7121612,'適苑酒家','1948 柴火粵菜・必比登・車10分',TE,0,'Sek Yuen Restaurant Jalan Pudu'],
+[3.1447,101.7150,'新峰肉骨茶（估計）','KL 市區最穩・車10分',TE,0,'Sun Fong Bak Kut Teh Medan Imbi','left'],
+[3.1441792,101.7197980,'Chim ★','泰 fine dining・不可取消・車10–15分',CU,0,'Chim by Chef Noom Kuala Lumpur'],
+[3.1525139,101.6201675,'Terra ★','新科一星・RM398++・TTDI 推薦這家・車20–40分',CU,0,'Terra Dining TTDI Kuala Lumpur','left'],
+[3.1527392,101.6208070,'Akar ★','新科一星・週末常滿・與 Terra 同街',CU,0,'Akar Dining TTDI Kuala Lumpur'],
+[3.1425984,101.6248060,'DC ★','法×日・週一二休',CU,0,'DC by Darren Chin TTDI','left']
+]);
+var m4=newMap('m4',[4.5950,101.0800],16);
+L.circle([4.5955,101.0778],{radius:320,color:'#1E6B57',weight:1.5,dashArray:'5 5',fill:false}).addTo(m4);
+pts(m4,[
+[4.5970418,101.0735662,'怡保火車站 ★','1917「怡保泰姬陵」・本身就是景點',CU,1,'Ipoh Railway Station','left'],
+[4.5932295,101.0769238,'新源隆','1937 白咖啡創始店之一・14:30 收',TE,0,'Sin Yoon Loong Ipoh','left'],
+[4.5953418,101.0776484,'南香茶室（估計）','1958・開到 17:00・與新源隆挑一家',TE,0,'Nam Heong White Coffee Ipoh'],
+[4.5940107,101.0842254,'老黃芽菜雞','1957・正餐・只收現金・11:45 進場',CU,1,'Lou Wong Bean Sprout Chicken Ipoh'],
+[4.5949228,101.0843799,'Funny Mountain','豆腐花・10:30 起賣完為止・取代週四休的天津',TE,0,'Funny Mountain Soya Bean Ipoh','left'],
+[4.5940421,101.0859572,'宴瓊林（估計）','鹽焗雞紅盒外帶・門口有24h販賣機',TE,0,'Aun Kheng Lim Salted Chicken Ipoh'],
+[4.5948857,101.0847908,'新永香','1971 現烤咖椰角・最好帶上火車的伴手',TE,0,'Sin Eng Heong kaya puff Ipoh','left']
+]);
+</script>
+</body>
+</html>

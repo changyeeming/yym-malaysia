@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>8/30 日 · 留白 → Beta ★ 20:00 · 日卡</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+:root{--bg:#F5F4EE;--card:#FCFBF7;--ink:#262E28;--ink2:#5C665E;--line:#D9D8CD;--g:#1E6B57;--gs:#E3EEE8;--c:#A65B2B;--cs:#F3E7DA;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang TC","Noto Sans TC",-apple-system,sans-serif;font-size:15px;line-height:1.7;}
+.wrap{max-width:640px;margin:0 auto;padding:16px 14px 60px;}
+.top{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;}
+.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--ink2);text-transform:uppercase;}
+h1{font-family:"Songti TC","Songti SC",Georgia,serif;font-size:24px;margin:4px 0 6px;line-height:1.3;}
+.one{font-size:15px;color:var(--ink);margin:0 0 10px;}
+.anchors{display:flex;flex-wrap:wrap;gap:8px;}
+.anchor{background:var(--cs);color:var(--c);border-radius:999px;padding:3px 12px;font-size:13px;font-weight:600;white-space:nowrap;}
+.anchor.g{background:var(--gs);color:var(--g);}
+#map{height:300px;border-radius:12px;border:1px solid var(--line);margin:14px 0 6px;}
+.maplegend{font-size:12px;color:var(--ink2);margin-bottom:14px;}
+h2{font-family:"Songti TC","Songti SC",Georgia,serif;font-size:18px;margin:22px 0 10px;}
+.tl{border-left:2px solid var(--line);margin-left:8px;padding-left:16px;}
+.step{position:relative;margin-bottom:16px;}
+.step::before{content:"";position:absolute;left:-22px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--g);border:2px solid var(--card);}
+.step.key::before{background:var(--c);width:12px;height:12px;left:-23px;top:7px;}
+.t{font-variant-numeric:tabular-nums;font-weight:700;font-size:14px;color:var(--ink2);}
+.what{font-weight:600;font-size:15.5px;}
+.how{font-size:14px;color:var(--ink2);}
+.alt{font-size:13px;color:var(--ink2);background:var(--card);border:1px dashed var(--line);border-radius:8px;padding:6px 10px;margin-top:6px;}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:14px;}
+.box ul{margin:4px 0;padding-left:1.2em;}
+.nav{display:flex;justify-content:space-between;margin-top:26px;font-size:13px;}
+.nav a{color:var(--g);text-decoration:none;border-bottom:1px solid var(--line);}
+.lbl{background:rgba(252,251,247,.92);border:none;border-radius:4px;padding:1px 5px;font-size:11px;color:#26312B;box-shadow:0 0 0 1px rgba(0,0,0,.08);white-space:nowrap;}
+a{color:var(--g);}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top">
+  <div class="eyebrow">Day 5 · 2026.8.30 週日 · 日卡</div>
+  <h1>留白日：Kampung Baru 早市、Bangsar 選物或藝廊，晚上 Beta</h1>
+  <p class="one">週日全城星級只剩三家開，Beta 是其中之一，20:00 才開始——所以白天可以慢，甚至下午泳池。晚上是國慶前夜，KLCC 一帶有倒數人潮：19:40 步行去 Beta 正好避開叫車難，回程 22:30 看倒數氣氛也行。</p>
+  <div class="anchors"><span class="anchor">★ Beta 20:00 已訂（步行 15 分）</span><span class="anchor g">🍚 Wanjo 椰漿飯 8 點前</span><span class="anchor g">🎨 Ilham／Ombak（週一休，最後機會）</span><span class="anchor g">🎆 國慶前夜倒數（想看就下樓）</span></div>
+</div>
+<div id="map"></div>
+<div class="maplegend">今天的點分兩簇：住處圈（Wanjo、Ilham、Beta 都步行可達）與 Bangsar 選物（車 15–20 分鐘）。二選一，不必都去。</div>
+<h2>時間軸</h2>
+<div class="tl">
+<div class="step"><div class="t">07:30</div><div class="what">步行 15 分鐘（1,247m）→ Kampung Baru 的 Wanjo 椰漿飯</div><div class="how">摩天樓包圍的馬來甘榜，1963 年老店，sambal 甜辣有焦糖香。8 點前涼爽，吃完散步高腳屋聚落——這片村子本身就是一堂城市人類學課。</div><div class="alt">太熱就叫 Grab 3 分鐘。</div></div>
+<div class="step"><div class="t">09:30–11:30</div><div class="what">A 案 Bangsar 選物：Nala Designs（Bangsar Village II）</div><div class="how">Lisette Scheers 手繪馬來西亞紋樣的文具、布品、餐瓷——「有格調的小產品」最強答案，每日 10–22。Grab 15–20 分鐘。Kedai Bikin（kopitiam 椅當代版）週六預約制、週日狀況行前電話問。</div><div class="alt">B 案留在住處圈：Ilham Gallery＋Ombak KLCC 預覽展（週一休，今天是最後機會，若 Day 1／Day 4 沒去）。</div></div>
+<div class="step"><div class="t">12:30</div><div class="what">午餐：娘惹或粵菜二選一</div><div class="how">Old China Café（茨廠街戰前會館老屋、娘惹叻沙、每日 11–22）；或適苑酒家（1948 年柴火粵菜、必比登、Jalan Pudu）。從 Bangsar 過去都是 15 分鐘車程。</div><div class="alt">Bangsar 當地也可以：Baba Low’s 486（麻六甲街坊娘惹小店，時間行前電 03-2284-8486 確認）。</div></div>
+<div class="step"><div class="t">14:30–18:00</div><div class="what">回住處：57 樓泳池、午睡、打包</div><div class="how">明天離境，今天下午把行李收一半。泳池遇雷雨會關，下午三點前去。</div></div>
+<div class="step key"><div class="t">19:40</div><div class="what">步行 15 分鐘 → Beta（Cormar Suites, 10 Jalan Perak）</div><div class="how">國慶前夜 KLCC 一帶叫車難、封路可能，走路最穩。桌位只保留 15 分鐘。</div></div>
+<div class="step key"><div class="t">20:00–22:30</div><div class="what">Beta ★ 一星</div><div class="how">「Tour of Malaysia」敘事菜單（RM630++）或 Flora of Malaysia（RM550++），調酒師另有無酒精 pairing。當代馬來菜，跟太太喜歡的娘惹、南洋味同一條光譜的 fine-dining 端。</div><div class="alt">訂金 RM300/人已付；改期須 48 小時前——已過。</div></div>
+<div class="step"><div class="t">22:30</div><div class="what">散步回住處，路過 KLCC 湖畔看倒數氣氛</div><div class="how">Ambang Merdeka 倒數慣例在獨立廣場與 KLCC；想避人潮就繞 Jalan Ampang 那側回去。2026 主慶典在布城，市區以氣氛為主。</div></div>
+</div>
+<h2>今天要帶・要注意</h2>
+<div class="box"><ul><li>Beta 20:00、步行去；訂位確認截圖。</li><li>今天週日：Dewakan／Molina／Akar／Terra 全休——別臨時起意。</li><li>明天國慶：獨立廣場一帶可能封路，機場車程留餘裕。</li><li>Ilham 週一休——今天不去就沒了。</li></ul></div>
+<div class="nav"><a href="day4.html">← Day 4 娘惹與 The Row</a><a href="day6.html">Day 6 離境 →</a></div>
+</div>
+<script>
+var light=L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO'});
+var map=L.map('map',{layers:[light],scrollWheelZoom:false}).setView([3.1560,101.7080],14);
+map.on('click',function(){map.scrollWheelZoom.enable();});
+L.control.scale({imperial:false}).addTo(map);
+function pt(lat,lng,name,note,q,big,c,dir){c=c||'#1E6B57';var m=L.circleMarker([lat,lng],{radius:big?9:6.5,color:c,fillColor:c,fillOpacity:.92,weight:big?3:1.5}).addTo(map);m.bindPopup('<b>'+name+'</b><br>'+note+'<br><a target="_blank" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q||name)+'">Google Maps 導航</a>');m.bindTooltip(name,{permanent:true,direction:dir||'right',offset:[8,0],className:'lbl'});}
+L.circle([3.1610013,101.7125631],{radius:800,color:'#A65B2B',weight:1.2,dashArray:'5 5',fill:false}).addTo(map);
+pt(3.1610013,101.7125631,'住處','基地','Ascott Star KLCC Kuala Lumpur',true,'#A65B2B','right');
+pt(3.1624468,101.7044457,'Wanjo 椰漿飯','1963・8 點前・步行 15 分','Nasi Lemak Wanjo',true,'#1E6B57','left');
+pt(3.1567,101.7097,'Beta ★','20:00 已訂・步行 15 分','Beta KL Jalan Perak',true,'#7A1F1F','left');
+pt(3.1588687,101.7188400,'Ilham Gallery','週一休→今天最後機會','Ilham Gallery',false,'#7F58A8','right');
+pt(3.1413844,101.6973506,'Old China Café','娘惹午餐備案・茨廠街','Old China Cafe Kuala Lumpur',false,'#1E6B57','left');
+pt(3.1355939,101.7121612,'適苑酒家','1948 粵菜午餐備案','Sek Yuen Jalan Pudu',false,'#1E6B57','right');
+pt(3.1301,101.6714,'Nala Designs','Bangsar 選物・車 15–20 分','Nala Designs Bangsar Village',false,'#BA7517','left');
+pt(3.1310282,101.6784396,'Kedai Bikin','週六預約制→週日？行前確認','Kedai Bikin Bangsar',false,'#BA7517','right');
+pt(3.1555803,101.7147801,'KLCC 公園','倒數人潮處','KLCC Park',false,'#1E6B57','left');
+</script>
+</body>
+</html>

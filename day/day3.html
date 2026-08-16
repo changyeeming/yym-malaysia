@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>8/28 五 · 茨廠街圈 → Dewakan ★★ · 日卡</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+:root{--bg:#F5F4EE;--card:#FCFBF7;--ink:#262E28;--ink2:#5C665E;--line:#D9D8CD;--g:#1E6B57;--gs:#E3EEE8;--c:#A65B2B;--cs:#F3E7DA;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang TC","Noto Sans TC",-apple-system,sans-serif;font-size:15px;line-height:1.7;}
+.wrap{max-width:640px;margin:0 auto;padding:16px 14px 60px;}
+.top{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;}
+.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--ink2);text-transform:uppercase;}
+h1{font-family:"Songti TC","Songti SC",Georgia,serif;font-size:24px;margin:4px 0 6px;line-height:1.3;}
+.one{font-size:15px;color:var(--ink);margin:0 0 10px;}
+.anchors{display:flex;flex-wrap:wrap;gap:8px;}
+.anchor{background:var(--cs);color:var(--c);border-radius:999px;padding:3px 12px;font-size:13px;font-weight:600;white-space:nowrap;}
+.anchor.g{background:var(--gs);color:var(--g);}
+#map{height:300px;border-radius:12px;border:1px solid var(--line);margin:14px 0 6px;}
+.maplegend{font-size:12px;color:var(--ink2);margin-bottom:14px;}
+h2{font-family:"Songti TC","Songti SC",Georgia,serif;font-size:18px;margin:22px 0 10px;}
+.tl{border-left:2px solid var(--line);margin-left:8px;padding-left:16px;}
+.step{position:relative;margin-bottom:16px;}
+.step::before{content:"";position:absolute;left:-22px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--g);border:2px solid var(--card);}
+.step.key::before{background:var(--c);width:12px;height:12px;left:-23px;top:7px;}
+.t{font-variant-numeric:tabular-nums;font-weight:700;font-size:14px;color:var(--ink2);}
+.what{font-weight:600;font-size:15.5px;}
+.how{font-size:14px;color:var(--ink2);}
+.alt{font-size:13px;color:var(--ink2);background:var(--card);border:1px dashed var(--line);border-radius:8px;padding:6px 10px;margin-top:6px;}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:14px;}
+.box ul{margin:4px 0;padding-left:1.2em;}
+.nav{display:flex;justify-content:space-between;margin-top:26px;font-size:13px;}
+.nav a{color:var(--g);text-decoration:none;border-bottom:1px solid var(--line);}
+.lbl{background:rgba(252,251,247,.92);border:none;border-radius:4px;padding:1px 5px;font-size:11px;color:#26312B;box-shadow:0 0 0 1px rgba(0,0,0,.08);white-space:nowrap;}
+a{color:var(--g);}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top">
+  <div class="eyebrow">Day 3 · 2026.8.28 週五 · 日卡</div>
+  <h1>茨廠街菱形走一公里，晚上把胃交給二星</h1>
+  <p class="one">上午叫車進老城走那條 1.1 公里的文青菱形，中午吃輕的、下午躲進老屋咖啡，16:30 收尾回住處梳洗，18:00 Dewakan。今天的節奏是「早上用腳、晚上用胃」。</p>
+  <div class="anchors"><span class="anchor">★★ Dewakan 18:00 已訂（Grab 5 分）</span><span class="anchor g">🚶 鬼仔巷→REXKL→中央藝術坊→獨立廣場</span><span class="anchor g">☕ Merchant’s Lane 下午</span></div>
+</div>
+<div id="map"></div>
+<div class="maplegend">紫線＝步行菱形，三段實測 375／323／383 公尺，走完剛好收在獨立廣場。Dewakan 在住處那頭（不在此圖），18:00 從住處 Grab。</div>
+<h2>時間軸</h2>
+<div class="tl">
+<div class="step"><div class="t">08:00</div><div class="what">早餐：After One（樓下）或 Kampung Baru 的 Wanjo 椰漿飯</div><div class="how">Wanjo 是 1963 年老店，步行約 15 分鐘（1,247m），8 點前涼爽；今天走路多，也可以就樓下吃簡單的。</div></div>
+<div class="step key"><div class="t">09:15</div><div class="what">Grab 進老城 → 鬼仔巷（約 15 分鐘）</div><div class="how">定位「Kwai Chai Hong」。何九茶店就在巷口 30 公尺，這時已排隊，看一眼就好。</div></div>
+<div class="step"><div class="t">09:30–10:15</div><div class="what">鬼仔巷壁畫巷 → 抬頭看 Merdeka 118</div><div class="how">鬼仔巷 2019 年民間修復，重現 1960 年代華人街坊。走到巷尾往南 320 公尺，世界第二高樓從騎樓縫隙冒出來——比上觀景台動人（觀景台也還沒開）。</div></div>
+<div class="step"><div class="t">10:15–11:00</div><div class="what">步行 5 分 → REXKL 老戲院書店</div><div class="how">BookXcess 挑高空間；順路 Riwayat 書店（34 Jalan Tun H S Lee，馬來西亞史選書＋黑膠）。</div></div>
+<div class="step"><div class="t">11:00–11:45</div><div class="what">步行 6–8 分 → 中央藝術坊</div><div class="how">1888 年 Art Deco 老建築；樓上工藝層今年有整修傳聞，順路看，別抱太高期待。</div></div>
+<div class="step"><div class="t">11:45–12:30</div><div class="what">沿河經 Masjid Jamek → 獨立廣場</div><div class="how">兩河交匯處是吉隆坡地名的原點（「泥濘河口」）。獨立廣場的 Sultan Abdul Samad 大樓 1897 年摩爾—蒙兀兒混血式樣，正午光硬，快走一圈；旁邊國家紡織博物館免費、有冷氣，正午救援。</div><div class="alt">LOKL 咖啡（30 Jalan Tun H S Lee）在菱形邊上，想坐就坐。</div></div>
+<div class="step key"><div class="t">12:45</div><div class="what">Grab 5 分鐘回茨廠街 → 南香雞飯（輕午餐）</div><div class="how">1938 年海南雞飯、必比登。今晚有十幾道菜，中午吃七分飽。</div><div class="alt">或新九如牛肉粉。避開 12:30–13:30 尖峰——現在剛好。</div></div>
+<div class="step"><div class="t">13:30–15:30</div><div class="what">Merchant’s Lane 二樓天井躲太陽</div><div class="how">150 Jalan Petaling，老街屋二樓花磚藤椅（週三休；今天週五開）。或轉角的 Leaf & Co.（53 Jalan Sultan）。</div><div class="alt">下雨改 GMBB（步行 10–12 分鐘），創作者商場、Five Arts Centre、皮影戲新創。</div></div>
+<div class="step key"><div class="t">15:45</div><div class="what">Grab 回住處（約 15 分鐘）→ 梳洗休息</div><div class="how">16:30 前到家。電梯避開日落尖峰，早點上樓。</div></div>
+<div class="step key"><div class="t">17:45</div><div class="what">出發 → Dewakan（Naza Tower 48 樓）</div><div class="how">住處到 Dewakan 直線 973 公尺、要斜穿 KLCC，傍晚常雷陣雨——直接 Grab 5 分鐘，定位「Naza Tower Platinum Park」。遲到超過 15 分鐘可能失位。</div></div>
+<div class="step key"><div class="t">18:00–20:30</div><div class="what">Dewakan ★★ 二星＋綠星</div><div class="how">RM870/人 tasting；dress code「elegantly smart」（先生長褲、不可露趾鞋）；48 樓訊號弱，先跟家裡說一聲；全程約 150 分鐘。</div><div class="alt">取消須 24 小時前——已過，就是去了。</div></div>
+<div class="step"><div class="t">20:45</div><div class="what">Grab 或散步回住處</div><div class="how">吃飽走回去 15 分鐘也行，看天氣。今晚結束。</div></div>
+</div>
+<h2>今天要帶・要注意</h2>
+<div class="box"><ul><li>Dewakan：長褲、包鞋、正裝一點；訂位確認信截圖。</li><li>老城日：陽傘、水、輕便；GMBB 是雨天備案。</li><li>中午吃輕，胃留給晚上。</li></ul></div>
+<div class="nav"><a href="day2.html">← Day 2 怡保</a><a href="day4.html">Day 4 娘惹與 The Row →</a></div>
+</div>
+<script>
+var light=L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO'});
+var map=L.map('map',{layers:[light],scrollWheelZoom:false}).setView([3.1450,101.6972],16);
+map.on('click',function(){map.scrollWheelZoom.enable();});
+L.control.scale({imperial:false}).addTo(map);
+function pt(lat,lng,name,note,q,big,c,dir){c=c||'#1E6B57';var m=L.circleMarker([lat,lng],{radius:big?9:6.5,color:c,fillColor:c,fillOpacity:.92,weight:big?3:1.5}).addTo(map);m.bindPopup('<b>'+name+'</b><br>'+note+'<br><a target="_blank" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q||name)+'">Google Maps 導航</a>');m.bindTooltip(name,{permanent:true,direction:dir||'right',offset:[8,0],className:'lbl'});}
+L.polyline([[3.1416091,101.6977314],[3.1448531,101.6982505],[3.1445997,101.6955316],[3.1487691,101.6936377]],{color:'#7F58A8',weight:3,opacity:.75}).addTo(map).bindTooltip('步行菱形 375／323／383 m',{sticky:true});
+pt(3.1416091,101.6977314,'鬼仔巷','09:30 起點・1960s 壁畫巷','Kwai Chai Hong',true,'#7F58A8','left');
+pt(3.1413488,101.6976799,'何九茶店','鬼仔巷口 30m・排隊店','Ho Kow Hainam Kopitiam',false,'#1E6B57','right');
+pt(3.1448531,101.6982505,'REXKL','老戲院書店','REXKL',false,'#7F58A8','right');
+pt(3.1440,101.6987,'南香雞飯','輕午餐・必比登','Nam Heong Chicken Rice Jalan Sultan',false,'#1E6B57','right');
+pt(3.1445997,101.6955316,'中央藝術坊','1888','Central Market Kuala Lumpur',false,'#7F58A8','left');
+pt(3.1489292,101.6956759,'Masjid Jamek','兩河交匯・地名原點','Masjid Jamek',false,'#7F58A8','right');
+pt(3.1487691,101.6936377,'獨立廣場','菱形終點・殖民建築群','Dataran Merdeka',true,'#7F58A8','left');
+pt(3.1465453,101.6939406,'紡織博物館','免費・正午冷氣','National Textile Museum KL',false,'#7F58A8','left');
+pt(3.1486723,101.6980011,'Riwayat 書店','馬來西亞史選書','Riwayat bookstore KL',false,'#7F58A8','right');
+pt(3.1410,101.6979,'Merchant’s Lane','二樓天井花磚・下午','Merchants Lane Kuala Lumpur',false,'#4A6478','left');
+pt(3.1429155,101.6988816,'Leaf & Co.','百年轉角老屋','Leaf and Co Cafe Jalan Sultan',false,'#4A6478','right');
+pt(3.1395,101.7003,'Merdeka 118','塔下抬頭看','Merdeka 118',false,'#7F58A8','right');
+pt(3.1447455,101.7045274,'GMBB','雨天備案','GMBB Kuala Lumpur',false,'#7F58A8','right');
+</script>
+</body>
+</html>

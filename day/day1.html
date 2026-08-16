@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>8/26 三 · 抵達 · 日卡</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+:root{--bg:#F5F4EE;--card:#FCFBF7;--ink:#262E28;--ink2:#5C665E;--line:#D9D8CD;--g:#1E6B57;--gs:#E3EEE8;--c:#A65B2B;--cs:#F3E7DA;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"PingFang TC","Noto Sans TC",-apple-system,sans-serif;font-size:15px;line-height:1.7;}
+.wrap{max-width:640px;margin:0 auto;padding:16px 14px 60px;}
+.top{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;}
+.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--ink2);text-transform:uppercase;}
+h1{font-family:"Songti TC","Songti SC",Georgia,serif;font-size:24px;margin:4px 0 6px;line-height:1.3;}
+.one{font-size:15px;color:var(--ink);margin:0 0 10px;}
+.anchors{display:flex;flex-wrap:wrap;gap:8px;}
+.anchor{background:var(--cs);color:var(--c);border-radius:999px;padding:3px 12px;font-size:13px;font-weight:600;white-space:nowrap;}
+.anchor.g{background:var(--gs);color:var(--g);}
+#map{height:300px;border-radius:12px;border:1px solid var(--line);margin:14px 0 6px;}
+.maplegend{font-size:12px;color:var(--ink2);margin-bottom:14px;}
+h2{font-family:"Songti TC","Songti SC",Georgia,serif;font-size:18px;margin:22px 0 10px;}
+.tl{border-left:2px solid var(--line);margin-left:8px;padding-left:16px;}
+.step{position:relative;margin-bottom:16px;}
+.step::before{content:"";position:absolute;left:-22px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--g);border:2px solid var(--card);}
+.step.key::before{background:var(--c);width:12px;height:12px;left:-23px;top:7px;}
+.t{font-variant-numeric:tabular-nums;font-weight:700;font-size:14px;color:var(--ink2);}
+.what{font-weight:600;font-size:15.5px;}
+.how{font-size:14px;color:var(--ink2);}
+.alt{font-size:13px;color:var(--ink2);background:var(--card);border:1px dashed var(--line);border-radius:8px;padding:6px 10px;margin-top:6px;}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:14px;}
+.box ul{margin:4px 0;padding-left:1.2em;}
+.nav{display:flex;justify-content:space-between;margin-top:26px;font-size:13px;}
+.nav a{color:var(--g);text-decoration:none;border-bottom:1px solid var(--line);}
+.lbl{background:rgba(252,251,247,.92);border:none;border-radius:4px;padding:1px 5px;font-size:11px;color:#26312B;box-shadow:0 0 0 1px rgba(0,0,0,.08);white-space:nowrap;}
+a{color:var(--g);}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top">
+  <div class="eyebrow">Day 1 · 2026.8.26 週三 · 日卡</div>
+  <h1>抵達日：把身體交給 KLCC 步行圈，不排重點</h1>
+  <p class="one">航班時間帶未定，這一天只有一條原則：落地、進房、走一小圈認路、早點睡。真正的行程從明天 08:55 的火車開始。</p>
+  <div class="anchors"><span class="anchor">🏨 Ascott Star KLCC 入住 15:00 後</span><span class="anchor g">🎨 Ilham Gallery（若 17:00 前到）</span><span class="anchor g">🌆 KLCC 公園看雙塔點燈</span></div>
+</div>
+<div id="map"></div>
+<div class="maplegend">虛線圈＝住處步行 400／800 公尺（約 5／10 分鐘）。今天只在這個圈裡。</div>
+<h2>時間軸</h2>
+<div class="tl">
+<div class="step key"><div class="t">落地</div><div class="what">KLIA → 住處：直接 Grab</div><div class="how">約 55–70 分鐘。定位「Ascott Star KLCC」直達門口車道；比接駁列車轉乘省去拖行李換車。</div></div>
+<div class="step key"><div class="t">15:00 後</div><div class="what">入住 → 一封 email 早就寄好的話，這時領到高樓層 KLCC view</div><div class="how">押金 RM200 刷卡。房內有廚房與洗衣機。電梯少，避開 8:30–9:30 與日落前後尖峰。</div></div>
+<div class="step"><div class="t">入住後</div><div class="what">走一小圈認路：Suria KLCC（8 分鐘）→ 超市補水果咖啡</div><div class="how">經 Star Boulevard 直走 400 公尺就看見雙塔。Suria 地下 Cold Storage／Isetan 補貨；Nyonya Colors 買兩塊娘惹糕給太太當見面禮。</div></div>
+<div class="step"><div class="t">若 17:00 前</div><div class="what">Ilham Gallery（步行 10 分鐘）</div><div class="how">免費、策展嚴肅、全 KL 最好的藝術書店。週一休，所以今天或 8/28–30 都可以；今天有力氣就先看，沒力氣留給 8/30。</div><div class="alt">Ombak KLCC 的 Galeri Petronas 預覽展「The First Glimpse」就在旁邊，同一趟。</div></div>
+<div class="step"><div class="t">傍晚 18:30</div><div class="what">KLCC 公園散步 → 看雙塔點燈</div><div class="how">五點後熱氣散，本地家庭出來散步；湖面晚八點起有水舞。</div><div class="alt">若航班晚到，這段直接砍，晚餐吃樓下 After One 或叫外送。</div></div>
+<div class="step"><div class="t">晚餐</div><div class="what">輕鬆：After One 或 Suria 裡隨意</div><div class="how">明天 07:20 要出門，早睡。</div></div>
+<div class="step key"><div class="t">睡前</div><div class="what">明天火車日備物：護照、KTMB App／票 PDF、現金 RM150、陽傘、水</div><div class="how">鬧鐘 06:30。</div></div>
+</div>
+<h2>今天要帶・要注意</h2>
+<div class="box"><ul><li>航班時間帶一到位，這張卡會重排。</li><li>KLIA→市區 Grab 約 RM70–100；機場排班計程車有櫃台券。</li><li>入住 email：高樓層、近電梯廳、KLCC view。</li></ul></div>
+<div class="nav"><span></span><a href="day2.html">Day 2 怡保 →</a></div>
+</div>
+<script>
+var light=L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO'});
+var map=L.map('map',{layers:[light],scrollWheelZoom:false}).setView([3.1585,101.7150],15);
+map.on('click',function(){map.scrollWheelZoom.enable();});
+L.control.scale({imperial:false}).addTo(map);
+function pt(lat,lng,name,note,q,big,c,dir){c=c||'#1E6B57';var m=L.circleMarker([lat,lng],{radius:big?9:6.5,color:c,fillColor:c,fillOpacity:.92,weight:big?3:1.5}).addTo(map);m.bindPopup('<b>'+name+'</b><br>'+note+'<br><a target="_blank" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q||name)+'">Google Maps 導航</a>');m.bindTooltip(name,{permanent:true,direction:dir||'right',offset:[8,0],className:'lbl'});}
+L.circle([3.1610013,101.7125631],{radius:400,color:'#A65B2B',weight:1.2,dashArray:'5 5',fill:false}).addTo(map);
+L.circle([3.1610013,101.7125631],{radius:800,color:'#A65B2B',weight:1.2,dashArray:'5 5',fill:false}).addTo(map);
+pt(3.1610013,101.7125631,'住處 Ascott Star','15:00 入住・押金 RM200','Ascott Star KLCC Kuala Lumpur',true,'#A65B2B','left');
+pt(3.1618161,101.7136210,'After One','樓下・08:00 開','After One Persiaran Lidcol',false,'#4A6478','right');
+pt(3.1588687,101.7188400,'Ilham Gallery','免費・11–19・週一休','Ilham Gallery',true,'#7F58A8','right');
+pt(3.15694,101.71778,'Ombak KLCC','Galeri Petronas 預覽展','Ombak KLCC',false,'#7F58A8','right');
+pt(3.1555803,101.7147801,'KLCC 公園','傍晚・晚八點水舞','KLCC Park',false,'#1E6B57','left');
+pt(3.1573751,101.7123797,'Suria KLCC','超市補給・Nyonya Colors','Suria KLCC',false,'#4A6478','left');
+pt(3.1587,101.7133,'LRT KLCC 站','明早備案路線','LRT KLCC Station',false,'#A65B2B','left');
+</script>
+</body>
+</html>

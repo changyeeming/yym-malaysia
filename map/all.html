@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>全局互動地圖 · 馬來西亞小旅行 2026.8.26–31</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+html,body{margin:0;height:100%;font-family:"PingFang TC","Noto Sans TC",-apple-system,sans-serif;color:#262E28;}
+#map{position:absolute;top:0;left:0;right:0;bottom:0;}
+.panel{position:absolute;top:12px;left:12px;z-index:1000;background:rgba(252,251,247,.96);border:1px solid #D9D8CD;border-radius:12px;padding:12px 14px;max-width:290px;font-size:13px;line-height:1.7;box-shadow:0 2px 10px rgba(0,0,0,.08);}
+.panel h1{font-family:"Songti TC","Songti SC",Georgia,serif;font-size:17px;margin:0 0 4px;}
+.panel .sub{color:#5C665E;font-size:12px;margin-bottom:8px;}
+.jump{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px;}
+.jump button{font-size:12px;border:1px solid #D9D8CD;background:#fff;border-radius:999px;padding:2px 10px;cursor:pointer;color:#262E28;}
+.jump button:hover{border-color:#1E6B57;color:#1E6B57;}
+.leg label{display:flex;align-items:center;gap:8px;cursor:pointer;margin:2px 0;}
+.leg input{margin:0;}
+.dot{display:inline-block;width:11px;height:11px;border-radius:50%;}
+.sq{display:inline-block;width:11px;height:11px;border-radius:2px;}
+.lbl{background:rgba(252,251,247,.92);border:none;border-radius:4px;padding:1px 5px;font-size:11px;color:#26312B;box-shadow:0 0 0 1px rgba(0,0,0,.08);font-family:"PingFang TC",sans-serif;white-space:nowrap;}
+.leaflet-popup-content{font-size:13px;line-height:1.6;}
+.leaflet-popup-content b{font-size:14px;}
+.foot{position:absolute;bottom:14px;left:12px;z-index:1000;background:rgba(252,251,247,.9);border-radius:8px;padding:4px 10px;font-size:11px;color:#5C665E;max-width:60vw;}
+.panel.min .sub,.panel.min .jump,.panel.min .leg{display:none;}
+@media (max-width:640px){.panel{max-width:78vw;font-size:12px;} .foot{display:none;}}
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div class="panel">
+  <h1>馬來西亞小旅行 · 全局圖 <button id="tog" style="float:right;font-size:11px;border:1px solid #D9D8CD;background:#fff;border-radius:999px;padding:1px 8px;cursor:pointer;">收合</button></h1>
+  <div class="sub">2026.8.26–31 · 一張圖看所有已規劃的點。滾輪縮放、拖曳平移；拉近到街區才顯示名稱；點圖釘看一句話。</div>
+  <div class="jump">
+    <button onclick="go('my')">全馬三城</button>
+    <button onclick="go('kl')">吉隆坡三圈</button>
+    <button onclick="go('base')">住處步行圈</button>
+    <button onclick="go('cs')">茨廠街菱形</button>
+    <button onclick="go('ipoh')">怡保老城</button>
+  </div>
+  <div class="leg" id="leg"></div>
+</div>
+<div class="foot">座標：OpenStreetMap／Nominatim 逐點查證（8/14）；標「估」者為街廓級定位，圖釘彈窗一律用店名開 Google Maps。底圖 © OpenStreetMap／CARTO；衛星 © Esri。</div>
+<script>
+var light=L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO',maxZoom:19});
+var streets=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap',maxZoom:19});
+var sat=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'© Esri',maxZoom:19});
+var map=L.map('map',{layers:[light],zoomControl:false}).setView([3.15,101.70],13);
+L.control.zoom({position:'topright'}).addTo(map);
+L.control.layers({'淡色':light,'街道':streets,'衛星':sat},null,{position:'topright'}).addTo(map);
+L.control.scale({imperial:false,position:'bottomright'}).addTo(map);
+
+var CAT={
+ base:{name:'住處與交通',color:'#A65B2B'},
+ star:{name:'米其林星級（★＝已訂）',color:'#7A1F1F'},
+ food:{name:'娘惹・老字號・local',color:'#1E6B57'},
+ cafe:{name:'咖啡與甜',color:'#4A6478'},
+ art:{name:'藝廊・書店・文青點',color:'#7F58A8'},
+ shop:{name:'選物與工藝',color:'#BA7517'},
+ ipoh:{name:'怡保（8/27 一日）',color:'#0F6E56'}
+};
+var groups={}; Object.keys(CAT).forEach(function(k){groups[k]=L.layerGroup().addTo(map);});
+
+function add(cat,lat,lng,name,note,q,opts){
+  opts=opts||{};
+  var c=CAT[cat].color;
+  var mk=L.circleMarker([lat,lng],{radius:opts.big?9:6.5,color:c,fillColor:c,fillOpacity:.92,weight:opts.big?3:1.5}).addTo(groups[cat]);
+  mk.bindPopup('<b>'+name+'</b><br>'+note+'<br><a target="_blank" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q||name)+'">在 Google Maps 開導航</a>');
+  mk.bindTooltip(name,{permanent:opts.label!==false,direction:opts.dir||'right',offset:[8,0],className:'lbl'});
+  mk._cat=cat; return mk;
+}
+
+/* 住處與交通 */
+add('base',3.1610013,101.7125631,'住處 ★ Ascott Star KLCC','五晚基地・57樓泳池・早餐別加購','Ascott Star KLCC Kuala Lumpur',{big:true,dir:'left'});
+add('base',3.1341,101.6865,'KL Sentral・Gate B 上車','✅ 已訂 8/27 08:55 Gold 9044 F-5A/5B・Level 2・08:15 前到','KL Sentral');
+add('base',3.1587,101.7133,'LRT KLCC 站','經 Avenue K 步行 5–7 分・到 KL Sentral 5 站 12 分','LRT KLCC Station',{label:false});
+add('base',3.1555803,101.7147801,'KLCC 公園','傍晚儀式・晚八點起水舞・678m','KLCC Park',{label:false});
+add('base',3.1573751,101.7123797,'Suria KLCC','超市補給・Nyonya Colors 娘惹糕・紀伊國屋','Suria KLCC',{label:false});
+
+/* 星級 */
+add('star',3.1547191,101.7185049,'Dewakan ★★ 已訂 8/28 18:00','二星＋綠星・RM870・973m 叫車去・elegantly smart','Dewakan Naza Tower Kuala Lumpur',{big:true});
+add('star',3.1567,101.7097,'Beta ★ 已訂 8/30 晚','一星當代馬來菜・步行 15 分・訂金已付','Beta KL Jalan Perak',{big:true,dir:'left'});
+add('star',3.1586925,101.7039258,'Molina ★','歐陸・51樓・12h 前可訂・日一休','Molina restaurant Kuala Lumpur',{label:false});
+add('star',3.1441792,101.7197980,'Chim ★','泰 fine dining・不可取消','Chim by Chef Noom Kuala Lumpur',{label:false});
+add('star',3.1525139,101.6201675,'Terra ★（TTDI）','新科一星・RM398++・第二星首選・車 20–40 分','Terra Dining TTDI');
+add('star',3.1527392,101.6208070,'Akar ★（TTDI）','新科一星・與 Terra 同街','Akar Dining TTDI',{label:false});
+add('star',3.1425984,101.6248060,'DC ★（TTDI）','法×日・週一二休','DC by Darren Chin TTDI',{label:false});
+add('star',3.1593086,101.7209973,'De.Wan 1958','必比登・Chef Wan 馬來家宴・不用搶','De.Wan 1958 The LINC',{label:false});
+
+/* 娘惹 老字號 local */
+add('food',3.1582671,101.6994784,'Limapulo 娘惹主菜','米其林入選・午 walk-in・週日休→卡 8/29 中午','Limapulo Baba Can Cook',{big:true,dir:'left'});
+add('food',3.1413844,101.6973506,'Old China Café','娘惹・戰前會館老屋・8/30 中午','Old China Cafe Kuala Lumpur',{dir:'left'});
+add('food',3.1624468,101.7044457,'Wanjo 椰漿飯','Kampung Baru 1963・排早晨 8 點前・1,247m','Nasi Lemak Wanjo',{dir:'left'});
+add('food',3.1561115,101.6962745,'Capital Café','1956・馬華同室・沙嗲傍晚才烤・週日休','Capital Cafe Jalan TAR',{dir:'left'});
+add('food',3.1564828,101.7003022,'Yut Kee 鎰記','1928 海南茶室・9 點去・週一休','Yut Kee Kuala Lumpur');
+add('food',3.1440,101.6987,'南香雞飯（估）','1938・必比登・8/28 輕午餐','Nam Heong Chicken Rice Jalan Sultan',{label:false});
+add('food',3.1443421,101.6975031,'金蓮記','1927 福建麵發源店・晚餐','Kim Lian Kee Petaling Street',{label:false});
+add('food',3.1355939,101.7121612,'適苑酒家','1948 柴火粵菜・必比登','Sek Yuen Jalan Pudu');
+add('food',3.1447,101.7150,'新峰肉骨茶（估）','KL 市區最穩','Sun Fong Bak Kut Teh Medan Imbi',{label:false});
+add('food',3.1413488,101.6976799,'何九茶店','鬼仔巷口 30m・排隊店 7:30 到','Ho Kow Hainam Kopitiam',{label:false});
+
+/* 咖啡 */
+add('cafe',3.1618161,101.7136210,'After One','樓下早午餐 08:00','After One Persiaran Lidcol',{label:false});
+add('cafe',3.1408565,101.6980974,'Chocha','老旅社改造・晚餐為主・要訂位','Chocha Foodstore',{label:false});
+add('cafe',3.1410,101.6979,'Merchant’s Lane（估）','二樓天井花磚・週三休','Merchants Lane Kuala Lumpur',{label:false});
+add('cafe',3.1429155,101.6988816,'Leaf & Co.','百年轉角老屋・下午躲太陽','Leaf and Co Cafe Jalan Sultan',{label:false});
+add('cafe',3.1432531,101.7054476,'VCR','1927 老屋精品咖啡・早晨','VCR Galloway',{label:false});
+add('cafe',3.1487879,101.6979943,'LOKL','獨立廣場散步起點早午餐','LOKL Coffee',{label:false});
+
+/* 藝 書 文青 */
+add('art',3.1588687,101.7188400,'Ilham Gallery','免費・全KL最好藝術書店・週一休','Ilham Gallery',{big:true});
+add('art',3.15694,101.71778,'Ombak KLCC','Galeri Petronas 預覽展・此刻限定','Ombak KLCC',{label:false});
+add('art',3.1416091,101.6977314,'鬼仔巷','1960s 壁畫巷・菱形起點','Kwai Chai Hong',{dir:'left'});
+add('art',3.1448531,101.6982505,'REXKL','老戲院書店','REXKL',{label:false});
+add('art',3.1445997,101.6955316,'中央藝術坊','1888・工藝層整修?','Central Market Kuala Lumpur',{label:false});
+add('art',3.1487691,101.6936377,'獨立廣場','殖民建築群・晨昏光斜','Dataran Merdeka',{dir:'left'});
+add('art',3.1489292,101.6956759,'Masjid Jamek','兩河交匯・地名原點','Masjid Jamek',{label:false});
+add('art',3.1465453,101.6939406,'紡織博物館','免費・正午冷氣救援','National Textile Museum KL',{label:false});
+add('art',3.1486723,101.6980011,'Riwayat 書店','馬來西亞史選書＋黑膠','Riwayat bookstore KL',{label:false});
+add('art',3.1447455,101.7045274,'GMBB','創作者商場・雨天下午','GMBB Kuala Lumpur',{label:false});
+add('art',3.1395,101.7003,'Merdeka 118','離鬼仔巷 320m・塔下抬頭看','Merdeka 118',{label:false});
+add('art',3.1378922,101.6971390,'Zhongshan Building','Tintabudi 書店＋藝廊・週一休','The Zhongshan Building Kampung Attap',{dir:'left'});
+
+/* 選物 */
+add('shop',3.1586,101.6993,'Batik Boutique（估）','蠟染設計品・與 Limapulo 同街','Batik Boutique The Row',{label:false});
+add('shop',3.1301,101.6714,'Nala Designs（估）','手繪馬來西亞紋樣・Bangsar','Nala Designs Bangsar Village');
+add('shop',3.1310282,101.6784396,'Kedai Bikin','馬來西亞製家具家品・週六預約制','Kedai Bikin Bangsar',{label:false});
+
+/* 怡保 */
+add('ipoh',4.5970418,101.0735662,'怡保火車站','11:29 到／19:00 回・1917 白色建築','Ipoh Railway Station',{big:true,dir:'left'});
+add('ipoh',4.5968284,101.0761924,'Birch 鐘樓','1909','Birch Memorial Clock Tower Ipoh',{label:false});
+add('ipoh',4.5932295,101.0769238,'新源隆','白咖啡蛋撻・14:30 收','Sin Yoon Loong Ipoh',{dir:'left'});
+add('ipoh',4.5953418,101.0776484,'南香茶室（估）','到 17:00','Nam Heong White Coffee Ipoh',{label:false});
+add('ipoh',4.5962611,101.0790011,'閒真別墅','1893 錫礦公館・週四僅 11:00 場・路過看外觀','Han Chin Pet Soo Ipoh',{label:false});
+add('ipoh',4.5958725,101.0795675,'二奶巷','礦業窄巷','Concubine Lane Ipoh',{label:false});
+add('ipoh',4.5965183,101.0775298,'Kong Heng 街區','市集・BookXcess 金庫書店・Aud’s','Kong Heng Square Ipoh');
+add('ipoh',4.5978176,101.0782373,'STG 洋樓茶館','1937・正午避熱・12:00 開','STG Ipoh Oldtown',{label:false});
+add('ipoh',4.5956729,101.0787680,'何人可博物館（估）','免費涼茶博物館','Ho Yan Hor Museum Ipoh',{label:false});
+add('ipoh',4.5940107,101.0842254,'老黃芽菜雞','正餐・現金・11:45 進場','Lou Wong Bean Sprout Chicken Ipoh',{big:true});
+add('ipoh',4.5949228,101.0843799,'Funny Mountain 豆花','賣完為止','Funny Mountain Soya Bean Ipoh',{label:false});
+add('ipoh',4.5940421,101.0859572,'宴瓊林鹽焗雞（估）','外帶紅盒','Aun Kheng Lim Salted Chicken Ipoh',{label:false});
+add('ipoh',4.5948857,101.0847908,'新永香咖椰角','帶上火車的伴手','Sin Eng Heong kaya puff Ipoh',{label:false});
+
+/* 圈與線 */
+var rings=L.layerGroup().addTo(map);
+L.circle([3.1610013,101.7125631],{radius:400,color:'#A65B2B',weight:1.2,dashArray:'5 5',fill:false}).addTo(rings);
+L.circle([3.1610013,101.7125631],{radius:800,color:'#A65B2B',weight:1.2,dashArray:'5 5',fill:false}).addTo(rings);
+L.polyline([[3.1416091,101.6977314],[3.1448531,101.6982505],[3.1445997,101.6955316],[3.1487691,101.6936377]],{color:'#7F58A8',weight:3,opacity:.75}).addTo(rings).bindTooltip('茨廠街步行菱形・約 1.1 km',{sticky:true});
+L.circle([4.5955,101.0778],{radius:320,color:'#0F6E56',weight:1.2,dashArray:'5 5',fill:false}).addTo(rings);
+L.polyline([[3.1341,101.6865],[3.36,101.55],[3.68,101.52],[4.02,101.30],[4.30,101.15],[4.5970418,101.0735662]],{color:'#0F6E56',weight:2.5,opacity:.6,dashArray:'6 6'}).addTo(rings).bindTooltip('ETS 西海岸鐵路・KL Sentral→Ipoh 2h34',{sticky:true});
+
+/* 圖例 */
+var leg=document.getElementById('leg');
+Object.keys(CAT).forEach(function(k){
+  var l=document.createElement('label');
+  l.innerHTML='<input type="checkbox" checked data-k="'+k+'"><span class="dot" style="background:'+CAT[k].color+'"></span>'+CAT[k].name;
+  leg.appendChild(l);
+});
+var lr=document.createElement('label'); lr.innerHTML='<input type="checkbox" checked data-k="rings"><span class="sq" style="border:1.5px dashed #888;"></span>步行圈・菱形・鐵路'; leg.appendChild(lr);
+leg.addEventListener('change',function(e){var k=e.target.getAttribute('data-k'); var g=(k==='rings')?rings:groups[k]; if(e.target.checked)map.addLayer(g); else map.removeLayer(g);});
+
+/* 跳轉 */
+var VIEWS={my:[[3.85,101.4],9],kl:[[3.150,101.703],14],base:[[3.1585,101.7135],16],cs:[[3.1450,101.6968],16],ipoh:[[4.5955,101.0795],16]};
+function go(k){map.setView(VIEWS[k][0],VIEWS[k][1]);}
+function syncLabels(){var z=map.getZoom(); document.querySelectorAll('.lbl').forEach(function(el){el.style.display=(z>=15)?'':'none';});}
+map.on('zoomend',syncLabels); syncLabels();
+document.getElementById('tog').addEventListener('click',function(){var p=document.querySelector('.panel'); p.classList.toggle('min'); this.textContent=p.classList.contains('min')?'展開':'收合';});
+</script>
+</body>
+</html>
